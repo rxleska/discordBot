@@ -6,14 +6,15 @@ import praw
 import pandas as pd
 from PIL import Image
 import random
+import Constants
 
 print("started")
 
 client = discord.Client()
 
-reddit = praw.Reddit(client_id="FdRi0pFXO14bTQ",      # your client id
-                     client_secret="Zr464LITLlGgTbmxNRTewgCkOTvaCg",  # your client secret
-                     user_agent="octobot",  # user agent name
+reddit = praw.Reddit(client_id=Constants.client_id,      # your client id
+                     client_secret=Constants.client_secret,  # your client secret
+                     user_agent=Constants.user_agent,  # user agent name
                      )
 
 
@@ -45,7 +46,7 @@ def getSub(sub):
             x = x + 1
             curp = post[random.randint(0, len(post))]
             if x == 25:
-                return "nah, little to risky"
+                return "nah, little too risky"
         return curp.url
     except ValueError:
         return "oop, don't look like thats a sub bud"
@@ -95,4 +96,4 @@ async def on_message(message):
         await message.channel.send(cat())
 
 # os.getenv('TOKEN')
-client.run("ODA0NzQ0Njg2MDAxNDU1MTQ0.YBQy5A.v-QcWoSNXrvZmdprG2p375ie21k")
+client.run(Constants.Token)
